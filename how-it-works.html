@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works — Build-A-Politician</title>
+<meta name="description" content="How the Build-A-Politician election engine scores candidates and simulates election night.">
+<link rel="icon" href="assets/icons/logo-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="loading-screen" aria-hidden="true"><div class="loading-seal"></div><span class="loading-text">Briefing the analysts…</span></div>
+
+<header class="site-header">
+  <div class="container nav-row">
+    <a class="brand" href="index.html"><img class="brand-mark" src="assets/icons/logo-mark.svg" alt="" aria-hidden="true">Build-A-Politician</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="create.html">Create Politician</a></li>
+        <li><a href="opponent.html">Choose Opponent</a></li>
+        <li><a href="simulator.html">Election Simulator</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="how-it-works.html" aria-current="page">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-toggle" data-sound-toggle title="Toggle sound effects" aria-label="Toggle sound effects">🔊</button>
+      <button class="icon-toggle" data-music-toggle title="Toggle background music" aria-label="Toggle background music">🎵</button>
+      <button class="theme-pill" data-theme-toggle aria-pressed="false"><span aria-hidden="true">🌓</span><span class="theme-label">Dark Mode</span></button>
+      <button class="nav-burger" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section" style="padding-top:2.5rem;">
+    <div class="container">
+      <p class="eyebrow">Under the hood</p>
+      <h1>How the Election Engine Works</h1>
+      <p class="hero-sub">The simulator uses weighted probability, not pure randomness, so results are believable, replayable, and never identical twice.</p>
+
+      <div class="card card-pad mt-2">
+        <ol class="numbered-steps">
+          <li><span class="step-num">01</span><div><strong>Trait Score.</strong> Each candidate's eight traits (charisma, integrity, public speaking,
+            debate skill, fundraising, popularity, experience, intelligence) are combined into a weighted score out of 100.</div></li>
+          <li><span class="step-num">02</span><div><strong>National Mood.</strong> The engine rolls a random ideological "mood" for each of the eight policy
+            issues, then measures how closely each candidate's platform matches that mood.</div></li>
+          <li><span class="step-num">03</span><div><strong>Campaign Events.</strong> Between 3 and 6 events are drawn from a pool of 16 — debates, scandals,
+            endorsements, economic swings, and more — each nudging one candidate's support up or down.</div></li>
+          <li><span class="step-num">04</span><div><strong>State-by-State Simulation.</strong> All 51 electoral-map entries (50 states plus D.C.) are simulated
+            individually. Home-state favorite bonuses, regional policy-focus matches, swing-state volatility, and independent
+            random noise all apply per state.</div></li>
+          <li><span class="step-num">05</span><div><strong>Electoral & Popular Vote.</strong> Electors are tallied per state (538 total, 270 to win) and the
+            national popular vote is calculated as a turnout-weighted average across every state.</div></li>
+          <li><span class="step-num">06</span><div><strong>Results Breakdown.</strong> The winner's top traits, the deciding issues, and the single most
+            influential campaign event are surfaced, along with a campaign rating from "Nail-Biter" to "Historic Landslide."</div></li>
+        </ol>
+      </div>
+
+      <div class="grid grid-3 mt-2">
+        <div class="card feature-card">
+          <img class="feature-icon" src="assets/svg/election-map.svg" alt="" aria-hidden="true">
+          <h3>Never Identical</h3>
+          <p>National mood, campaign events, and per-state noise are re-rolled every run, so no two elections play out the same way — even with identical candidates.</p>
+        </div>
+        <div class="card feature-card">
+          <img class="feature-icon" src="assets/icons/vote-check.svg" alt="" aria-hidden="true">
+          <h3>Weighted, Not Random</h3>
+          <p>Stronger candidates on the issues that matter to the national mood are favored — but a well-timed event can still flip a close race.</p>
+        </div>
+        <div class="card feature-card">
+          <img class="feature-icon" src="assets/svg/ballot-box.svg" alt="" aria-hidden="true">
+          <h3>Everything Local</h3>
+          <p>All of this runs client-side in your browser using plain JavaScript — nothing is sent to a server, ever.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-2">
+        <a class="btn gold" href="create.html">Start Building Your Candidate</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <div class="footer-brand">Build-A-Politician</div>
+    <div class="footer-credit">Created by Van Club America • Van, Texas<br>© <span data-year></span> Build-A-Politician.</div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
