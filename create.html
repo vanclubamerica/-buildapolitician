@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Politician — Build-A-Politician</title>
+<meta name="description" content="Design your fictional candidate's biography, traits, and policy platform.">
+<link rel="icon" href="assets/icons/logo-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="loading-screen" aria-hidden="true"><div class="loading-seal"></div><span class="loading-text">Filing candidacy papers…</span></div>
+
+<header class="site-header">
+  <div class="container nav-row">
+    <a class="brand" href="index.html"><img class="brand-mark" src="assets/icons/logo-mark.svg" alt="" aria-hidden="true">Build-A-Politician</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="create.html" aria-current="page">Create Politician</a></li>
+        <li><a href="opponent.html">Choose Opponent</a></li>
+        <li><a href="simulator.html">Election Simulator</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-toggle" data-sound-toggle title="Toggle sound effects" aria-label="Toggle sound effects">🔊</button>
+      <button class="icon-toggle" data-music-toggle title="Toggle background music" aria-label="Toggle background music">🎵</button>
+      <button class="theme-pill" data-theme-toggle aria-pressed="false"><span aria-hidden="true">🌓</span><span class="theme-label">Dark Mode</span></button>
+      <button class="nav-burger" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section" style="padding-top:2.5rem;">
+    <div class="container">
+      <p class="eyebrow">Step 1 of 4</p>
+      <h1>Create Your Politician</h1>
+      <p class="hero-sub">Fill in your candidate's biography, platform, and personal traits. The preview card on the right updates as you go.</p>
+
+      <div class="two-col mt-2">
+        <form id="builderForm" novalidate>
+          <div class="card card-pad mb-2">
+            <h2 style="font-size:1.3rem;">Biography</h2>
+            <div class="form-grid">
+              <div class="field"><label for="nameInput">Candidate Name</label><input type="text" id="nameInput" placeholder="Jordan Whitfield" required></div>
+              <div class="field"><label for="partyInput">Political Party Name</label><input type="text" id="partyInput" placeholder="Unity Party"></div>
+              <div class="field full">
+                <label for="sloganInput">Campaign Slogan</label>
+                <div style="display:flex; gap:0.6rem;">
+                  <input type="text" id="sloganInput" placeholder="Forward Together" style="flex:1;">
+                  <button type="button" class="btn secondary small" id="randomSloganBtn">🎲 Random</button>
+                </div>
+              </div>
+              <div class="field"><label for="ageInput">Age</label><input type="number" id="ageInput" min="35" max="100" value="45"></div>
+              <div class="field"><label for="stateSelect">Home State</label><select id="stateSelect"></select></div>
+              <div class="field full"><label for="experienceInput">Political Experience</label><input type="text" id="experienceInput" placeholder="Two terms as state senator"></div>
+              <div class="field"><label for="occupationInput">Occupation</label><input type="text" id="occupationInput" placeholder="Attorney"></div>
+              <div class="field"><label for="leadershipSelect">Leadership Style</label><select id="leadershipSelect"></select></div>
+              <div class="field"><label for="speechSelect">Speech Style</label><select id="speechSelect"></select></div>
+              <div class="field"><label for="economicFocusInput">Economic Focus</label><input type="text" id="economicFocusInput" placeholder="Small business growth"></div>
+              <div class="field full"><label for="foreignPolicyFocusInput">Foreign Policy Focus</label><input type="text" id="foreignPolicyFocusInput" placeholder="Strengthening alliances"></div>
+            </div>
+          </div>
+
+          <div class="card card-pad mb-2">
+            <h2 style="font-size:1.3rem;">Policy Platform</h2>
+            <p>Choose one position per issue.</p>
+            <div id="policyGroups"></div>
+          </div>
+
+          <div class="card card-pad mb-2">
+            <h2 style="font-size:1.3rem;">Character Traits</h2>
+            <div id="traitSliders" class="grid grid-2" style="gap:1rem;"></div>
+          </div>
+
+          <div class="card card-pad mb-2">
+            <h2 style="font-size:1.3rem;">Campaign Logo Color</h2>
+            <div class="color-swatches" id="colorSwatches"></div>
+          </div>
+
+          <div class="card card-pad">
+            <div class="flex-between">
+              <button type="button" class="btn" id="saveBtn">Save Candidate</button>
+              <button type="button" class="btn secondary" id="randomCandidateBtn">🎲 Random Candidate</button>
+              <button type="button" class="btn navy" id="downloadBtn">⬇ Download JSON</button>
+              <label class="btn secondary" for="loadInput" style="cursor:pointer;">⬆ Load JSON
+                <input type="file" id="loadInput" accept="application/json" class="visually-hidden">
+              </label>
+              <button type="button" class="btn secondary" id="printBtn">🖨 Print Card</button>
+              <button type="button" class="btn secondary" id="resetBtn">↺ Reset</button>
+            </div>
+            <p id="formMessage" role="status" class="mt-2" style="font-weight:600;"></p>
+          </div>
+        </form>
+
+        <aside>
+          <div style="position:sticky; top:100px;">
+            <p class="eyebrow text-center">Live Preview</p>
+            <div class="candidate-card" id="previewCard"></div>
+            <a class="btn gold block mt-2" href="opponent.html">Next: Choose Opponent →</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <div class="footer-brand">Build-A-Politician</div>
+    <div class="footer-credit">Created by Van Club America • Van, Texas<br>© <span data-year></span> Build-A-Politician.</div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/builder.js"></script>
+</body>
+</html>
